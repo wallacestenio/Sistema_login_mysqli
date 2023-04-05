@@ -6,8 +6,8 @@ global $msg;
 
 if(isset($_POST['btn_submit'])){
 
-    $email = mysqli_real_escape_string($con,$_POST['email']);
-    $password = mysqli_real_escape_string($con,$_POST['password']);
+    $email = mysqli_real_escape_string($con,addslashes($_POST['email']));
+    $password = mysqli_real_escape_string($con,addslashes(sha1($_POST['password'])));
 
     if ($email != "" && $password != "" && $ip != ""){
         $sql_query = "select * from users where email='".$email."' and password='".$password."'";

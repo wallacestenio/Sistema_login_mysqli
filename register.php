@@ -7,10 +7,10 @@ $data = date('Y-m-d');
 
 if(isset($_POST['btn_submit'])){
 
-    $name = mysqli_real_escape_string($con,$_POST['name']);    
-    $email = mysqli_real_escape_string($con,$_POST['email']);
-    $password = mysqli_real_escape_string($con,$_POST['password']);
-    $confPassword = mysqli_real_escape_string($con,$_POST['confPassword']);
+    $name = mysqli_real_escape_string($con,addslashes($_POST['name']));    
+    $email = mysqli_real_escape_string($con,addslashes($_POST['email']));
+    $password = mysqli_real_escape_string($con,addslashes(sha1($_POST['password'])));
+    $confPassword = mysqli_real_escape_string($con,addslashes(sha1($_POST['confPassword'])));
 
     if ($email != "" && $password != "" && $confPassword != "" && $ip != "" && $data != ""){
         $sql_query = "select * from users where email='".$email."'";
